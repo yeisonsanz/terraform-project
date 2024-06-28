@@ -20,6 +20,14 @@ resource "aws_instance" "nginx-server" {
   vpc_security_group_ids = [
     aws_security_group.nginx-server-sg.id
   ]
+
+  tags = {
+    Name       = "nginx-server"
+    Enviroment = "test"
+    Owner      = "yeisonsanz@outlook.com"
+    Team       = "Devops"
+    Project    = "webinar"
+  }
 }
 
 ##### SSH ##########
@@ -27,6 +35,14 @@ resource "aws_instance" "nginx-server" {
 resource "aws_key_pair" "nginx-server-ssh" {
   key_name = "nginx-server-ssh"
   public_key = file("nginx-server.key.pub") 
+
+   tags = {
+    Name       = "nginx-server-ssh"
+    Enviroment = "test"
+    Owner      = "yeisonsanz@outlook.com"
+    Team       = "Devops"
+    Project    = "webinar"
+  }
 }
 
 #### SG #####
@@ -53,5 +69,13 @@ resource "aws_security_group" "nginx-server-sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+   tags = {
+    Name       = "nginx-server-sg"
+    Enviroment = "test"
+    Owner      = "yeisonsanz@outlook.com"
+    Team       = "Devops"
+    Project    = "webinar"
   }
 }
